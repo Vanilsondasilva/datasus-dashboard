@@ -1,0 +1,406 @@
+/* ===============================
+   MAIN.CSS — Dashboard E-commerce Insights
+   Estrutura global, resets, utilitários, temas claros/escuros e componentes comuns.
+   Específicos do header devem ficar em components/header.css.
+   =============================== */
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Definição de fontes e variáveis globais */
+:root {
+    --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --color-bg: #f4f6fa;
+    --color-bg-dark: #1a1a1a;
+    --color-card: #fff;
+    --color-card-dark: #23272a;
+    --color-primary: #1976d2;
+    --color-secondary: #90caf9;
+    --color-accent: #2e7d32;
+    --color-danger: #d32f2f;
+    --color-success: #66bb6a;
+    --color-text: #424242;
+    --color-text-light: #b0bec5;
+    --color-muted: #757575;
+    --color-border: #e0e0e0;
+    --color-border-dark: #333;
+    --shadow-md: 0 4px 12px rgba(60,72,88,0.08), 0 1.5px 2.5px rgba(60,72,88,0.06);
+}
+
+/* Corpo e base */
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: var(--font-main);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--color-bg);
+    overscroll-behavior-y: none;
+}
+
+/* ========== LAYOUT BASE ========== */
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Espaçamento global */
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    box-sizing: border-box;
+}
+
+/* ========== DASHBOARD SECTIONS ========== */
+.dashboard-section {
+    background: #e5e7eb;
+    margin-top: 28px;
+    margin-bottom: 32px;
+    padding: 0;
+}
+
+.dashboard-section h3 {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--color-text);
+}
+
+.dashboard-section p {
+    color: var(--color-muted);
+    margin-bottom: 20px;
+    font-size: 1.08em;
+}
+
+/* ========== CARDS, BOXES E WIDGETS ========== */
+.card,
+.revenue-box {
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+}
+
+.card h4,
+.revenue-box h4 {
+    color: var(--color-text);
+    font-size: 1.25em;
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
+
+.card p,
+.revenue-box p {
+    margin: 8px 0;
+    color: var(--color-muted);
+    font-size: 1em;
+}
+
+.card.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.card.stat .stat-value {
+    font-size: 2.3em;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.card.stat .stat-label {
+    font-size: 1em;
+    color: var(--color-muted);
+}
+
+.revenue-box.goal {
+    border-left: 6px solid var(--color-primary);
+}
+
+/* ========== GRÁFICOS (CHARTS) ========== */
+.chart-container {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    padding: 24px 18px;
+    margin-bottom: 28px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ========== PROGRESS BAR ========== */
+.progress-bar {
+    width: 100%;
+    background: var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+    height: 22px;
+    margin: 12px 0;
+}
+
+.progress {
+    height: 100%;
+    background: var(--color-success);
+    text-align: right;
+    color: #fff;
+    padding-right: 14px;
+    line-height: 22px;
+    font-size: 1em;
+    font-weight: 600;
+    transition: width 0.8s cubic-bezier(.4,1.6,.7,1);
+}
+
+/* ========== TABELAS ========== */
+.table-container {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    padding: 18px;
+    margin-top: 24px;
+    overflow-x: auto;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.dashboard-table th {
+    background: #f2f7fb;
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.dashboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.dashboard-table tr:hover {
+    background: #f4f8fb;
+}
+
+.dashboard-table .row-total {
+    font-weight: 700;
+    color: var(--color-primary);
+    background: #e3f2fd;
+}
+
+/* ========== PIE CHART E WIDGETS DE ANÁLISE ========== */
+.pie-widget,
+.analysis-widget {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    padding: 22px 18px 18px 18px;
+    margin-bottom: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 260px;
+}
+
+/* ========== BADGES, TAGS E STATUS ========== */
+.badge {
+    display: inline-block;
+    background: var(--color-secondary);
+    color: var(--color-bg-dark);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.88em;
+    font-weight: 500;
+    margin-right: 6px;
+}
+
+/* ========== CORES DE DESTAQUE ========== */
+.growth {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.goal {
+    color: var(--color-danger);
+    font-weight: 600;
+}
+
+.value-positive {
+    color: var(--color-success);
+    font-weight: 600;
+}
+
+.value-negative {
+    color: var(--color-danger);
+    font-weight: 600;
+}
+
+/* ========== UTILITÁRIOS E AJUSTES GERAIS ========== */
+.flex {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+.flex-row {
+    flex-direction: row;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.items-center {
+    align-items: center;
+}
+.gap-2 {
+    gap: 8px;
+}
+.gap-4 {
+    gap: 16px;
+}
+.mt-2 {
+    margin-top: 8px;
+}
+.mt-4 {
+    margin-top: 16px;
+}
+.mb-2 {
+    margin-bottom: 8px;
+}
+.mb-4 {
+    margin-bottom: 16px;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-muted {
+    color: var(--color-muted) !important;
+}
+.rounded {
+    border-radius: 8px;
+}
+.shadow {
+    box-shadow: var(--shadow-md);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 98vw;
+        padding: 20px 10px;
+    }
+    .card, .revenue-box, .pie-widget, .analysis-widget, .table-container, .chart-container {
+        padding: 16px 8px;
+    }
+}
+@media (max-width: 900px) {
+    .container {
+        padding: 12px 3vw;
+    }
+    .dashboard-section {
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+    .card, .revenue-box, .pie-widget, .analysis-widget, .table-container, .chart-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+    }
+}
+@media (max-width: 700px) {
+    .container {
+        padding: 8px 2vw;
+    }
+    .dashboard-section h3 {
+        font-size: 1.15em;
+    }
+    .card, .revenue-box, .pie-widget, .analysis-widget, .table-container, .chart-container {
+        padding: 10px 2vw;
+        font-size: 0.97em;
+    }
+    .dashboard-table th,
+    .dashboard-table td {
+        padding: 8px 4px;
+        font-size: 0.95em;
+    }
+}
+@media (max-width: 480px) {
+    .container {
+        padding: 2px 1vw;
+    }
+    .card, .revenue-box, .pie-widget, .analysis-widget, .table-container, .chart-container {
+        padding: 6px 1vw;
+        font-size: 0.92em;
+    }
+}
+
+/* ========== SCROLLBAR CUSTOMIZADA (NAVEGADORES MODERNOS) ========== */
+::-webkit-scrollbar {
+    width: 8px;
+    background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: #e3e7ea;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b0bec5;
+}
+
+/* ========== CLASSES ESTRUTURAIS PARA ÁREAS DO DASHBOARD ========== */
+.overall-business-health,
+.deeper-dive {
+    margin-bottom: 32px;
+}
+
+/* ========== AJUSTES ESPECÍFICOS PARA GRÁFICOS (caso use Chart.js/D3/etc) ========== */
+.canvas-chart {
+    display: block;
+    width: 100% !important;
+    max-width: 98%;
+    height: 280px !important;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .canvas-chart {
+        height: 180px !important;
+    }
+}
