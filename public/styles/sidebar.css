@@ -1,0 +1,116 @@
+/* sidebar.css - Estilo completo para a Sidebar inspirada no projeto anterior */
+
+.sidebar {
+    width: 280px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 30px 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.sidebar-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.sidebar-header p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+    flex: 1;
+}
+
+.nav-section {
+    margin-bottom: 30px;
+}
+
+.nav-section-title {
+    padding: 0 25px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: #4a5568;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    border-radius: 0 8px 8px 0;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.nav-item:hover {
+    background: rgba(102, 126, 234, 0.09);
+    color: #667eea;
+    transform: translateX(5px);
+}
+
+.nav-item.active {
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
+    border-left-color: #667eea;
+    font-weight: 600;
+}
+
+.nav-item-icon {
+    font-size: 1.2rem;
+    margin-right: 15px;
+    width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.nav-item-text {
+    flex: 1;
+}
+
+.nav-item-badge {
+    background: #667eea;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        height: 100vh;
+        z-index: 2000;
+    }
+    .sidebar.open {
+        left: 0;
+        box-shadow: 8px 0 20px rgba(0,0,0,0.15);
+    }
+}

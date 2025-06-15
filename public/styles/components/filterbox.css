@@ -1,0 +1,287 @@
+/* FilterBox Component Styles - Estilo exato da imagem */
+
+/* Container principal dos filtros */
+.dashboard-filters {
+    display: flex !important;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 12px 16px !important;
+    background-color: transparent !important;
+    margin-top: 20px;
+    margin-bottom: 16px;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+}
+
+/* Botões de filtro - estilo minimalista */
+.dashboard-filters .filter-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 6px !important;
+    color: #6b7280 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    user-select: none;
+    transition: all 0.15s ease !important;
+    min-height: 32px !important;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+    outline: none !important;
+    text-decoration: none !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    text-align: left !important;
+    vertical-align: baseline !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Estados hover */
+.dashboard-filters .filter-btn:hover {
+    border-color: #9ca3af !important;
+    background-color: #f9fafb !important;
+    background: #f9fafb !important;
+    color: #374151 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Estados active */
+.dashboard-filters .filter-btn:active {
+    transform: none !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Estados focus */
+.dashboard-filters .filter-btn:focus {
+    border-color: #6b7280 !important;
+    box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.1) !important;
+    outline: none !important;
+}
+
+/* Estados ativos */
+.dashboard-filters .filter-btn.active {
+    border-color: #6b7280 !important;
+    background-color: #f3f4f6 !important;
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+}
+
+/* Ícones FontAwesome - tamanho menor e mais sutil */
+.dashboard-filters .filter-btn .fas {
+    font-size: 12px !important;
+    opacity: 0.6;
+    transition: opacity 0.15s ease !important;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #9ca3af !important;
+}
+
+.dashboard-filters .filter-btn:hover .fas {
+    opacity: 0.8 !important;
+    color: #6b7280 !important;
+}
+
+.dashboard-filters .filter-btn.active .fas {
+    opacity: 1 !important;
+    color: #374151 !important;
+}
+
+/* Chevron específico - menor e mais sutil */
+.dashboard-filters .filter-btn .chevron {
+    font-size: 10px !important;
+    margin-left: 4px !important;
+    transition: transform 0.15s ease, opacity 0.15s ease !important;
+    transform: rotate(0deg) !important;
+    opacity: 0.5 !important;
+    color: #9ca3af !important;
+}
+
+.dashboard-filters .filter-btn:hover .chevron {
+    opacity: 0.7 !important;
+    color: #6b7280 !important;
+}
+
+.dashboard-filters .filter-btn.open .chevron {
+    transform: rotate(180deg) !important;
+}
+
+/* Remover cores específicas dos ícones - manter tudo neutro */
+.dashboard-filters .filter-btn .fa-calendar-alt,
+.dashboard-filters .filter-btn .fa-clock,
+.dashboard-filters .filter-btn .fa-tag,
+.dashboard-filters .filter-btn .fa-store {
+    color: #9ca3af !important;
+}
+
+.dashboard-filters .filter-btn:hover .fa-calendar-alt,
+.dashboard-filters .filter-btn:hover .fa-clock,
+.dashboard-filters .filter-btn:hover .fa-tag,
+.dashboard-filters .filter-btn:hover .fa-store {
+    color: #6b7280 !important;
+}
+
+.dashboard-filters .filter-btn.active .fa-calendar-alt,
+.dashboard-filters .filter-btn.active .fa-clock,
+.dashboard-filters .filter-btn.active .fa-tag,
+.dashboard-filters .filter-btn.active .fa-store {
+    color: #374151 !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dashboard-filters {
+        gap: 6px !important;
+        padding: 8px 12px !important;
+    }
+    
+    .dashboard-filters .filter-btn {
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+        min-height: 30px !important;
+        gap: 4px !important;
+    }
+    
+    .dashboard-filters .filter-btn .fas {
+        font-size: 11px !important;
+    }
+    
+    .dashboard-filters .filter-btn .chevron {
+        font-size: 9px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-filters {
+        flex-direction: column !important;
+        gap: 4px !important;
+    }
+    
+    .dashboard-filters .filter-btn {
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+}
+
+/* Reset específico para conflitos do main.css */
+.dashboard-filters .filter-btn * {
+    box-sizing: border-box !important;
+}
+
+/* Garantir que o container não herde estilos indesejados */
+.dashboard-filters {
+    margin-top: 20px !important;
+    margin-bottom: 16px !important;
+    min-height: auto !important;
+    height: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Container dos dropdowns */
+.filter-dropdown-container {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Dropdowns */
+.filter-dropdown {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    min-width: 200px !important;
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    z-index: 1000 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-8px) !important;
+    transition: all 0.15s ease !important;
+    margin-top: 4px !important;
+}
+
+.filter-dropdown.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+/* Conteúdo do dropdown */
+.dropdown-content {
+    padding: 4px 0 !important;
+    max-height: 250px !important;
+    overflow-y: auto !important;
+}
+
+/* Itens do dropdown */
+.dropdown-item {
+    padding: 8px 12px !important;
+    color: #374151 !important;
+    font-size: 13px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: background-color 0.1s ease !important;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+}
+
+.dropdown-item:hover {
+    background-color: #f3f4f6 !important;
+    color: #1f2937 !important;
+}
+
+.dropdown-item.selected {
+    background-color: #eff6ff !important;
+    color: #1d4ed8 !important;
+    font-weight: 500 !important;
+}
+
+.dropdown-item .fas {
+    font-size: 11px !important;
+    color: #1d4ed8 !important;
+    margin-left: 8px !important;
+}
+
+/* Scrollbar do dropdown */
+.dropdown-content::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+    background: #d1d5db !important;
+    border-radius: 2px !important;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af !important;
+}
+
+/* Responsividade para dropdowns */
+@media (max-width: 768px) {
+    .filter-dropdown {
+        min-width: 180px !important;
+        left: 0 !important;
+        right: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-dropdown {
+        min-width: 160px !important;
+        max-width: 90vw !important;
+    }
+    
+    .dropdown-item {
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+    }
+}

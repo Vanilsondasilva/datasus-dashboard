@@ -1,0 +1,12 @@
+{
+  "name": "datasus-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard para dados SUS",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "echo 'No start command'",
+    "build": "echo 'No build step'"
+  },
+  "author": "Seu Nome",
+  "license": "MIT"
+}
