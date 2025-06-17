@@ -1,11 +1,14 @@
 .main-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
     color: #fff;
     padding: 10px 20px;
-    border-bottom: 1px solid #b2b9bf;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    /*border-bottom: 1px solid #b2b9bf;*/
 }
 
 .main-header h2 {

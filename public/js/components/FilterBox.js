@@ -62,7 +62,7 @@ export function renderFilterBox(container) {
             <div class="filter-dropdown-container">
                 <button class="filter-btn" data-filter="date-range">
                     <i class="fas fa-calendar-alt"></i>
-                    <span class="filter-label">Date Range</span>
+                    <span class="filter-label">Período</span>
                     <i class="fas fa-chevron-down chevron"></i>
                 </button>
                 <div class="filter-dropdown" data-filter="date-range"></div>
@@ -71,7 +71,7 @@ export function renderFilterBox(container) {
             <div class="filter-dropdown-container">
                 <button class="filter-btn" data-filter="date-grouping">
                     <i class="fas fa-clock"></i>
-                    <span class="filter-label">Date Grouping</span>
+                    <span class="filter-label">Tipo Ítem</span>
                     <i class="fas fa-chevron-down chevron"></i>
                 </button>
                 <div class="filter-dropdown" data-filter="date-grouping"></div>
@@ -80,7 +80,7 @@ export function renderFilterBox(container) {
             <div class="filter-dropdown-container">
                 <button class="filter-btn" data-filter="product-category">
                     <i class="fas fa-tag"></i>
-                    <span class="filter-label">Product Category</span>
+                    <span class="filter-label">Categoria Ítem</span>
                     <i class="fas fa-chevron-down chevron"></i>
                 </button>
                 <div class="filter-dropdown" data-filter="product-category"></div>
@@ -89,7 +89,7 @@ export function renderFilterBox(container) {
             <div class="filter-dropdown-container">
                 <button class="filter-btn" data-filter="vendor">
                     <i class="fas fa-store"></i>
-                    <span class="filter-label">Vendor</span>
+                    <span class="filter-label">Fornecedor</span>
                     <i class="fas fa-chevron-down chevron"></i>
                 </button>
                 <div class="filter-dropdown" data-filter="vendor"></div>

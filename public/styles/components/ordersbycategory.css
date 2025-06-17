@@ -1,0 +1,25 @@
+.orders-by-category-section {
+  margin: 2rem 0;
+}
+
+.orders-by-category-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(60,60,60,0.07);
+  padding: 2rem 1.5rem 2.5rem 1.5rem;
+}
+
+.orders-by-category-card h3 {
+  color: #46507a;
+  font-size: 1.15rem;
+  margin-bottom: 1.4rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+#ordersByCategoryLineChart {
+  max-width: 100%;
+  min-height: 320px;
+  margin: 0 auto;
+  display: block;
+}

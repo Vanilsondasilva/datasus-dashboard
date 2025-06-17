@@ -1,7 +1,7 @@
 export function renderHeader(container, activeTab = "overview") {
     container.innerHTML = `
         <header class="main-header">
-            <h2>E-commerce Insights</h2>
+            <h2>BioLens</h2>
             <nav>
                 <a href="#" class="nav-link${activeTab === 'overview' ? ' active' : ''}" data-tab="overview">Overview</a>
                 <a href="#" class="nav-link${activeTab === 'portfolio' ? ' active' : ''}" data-tab="portfolio">Portfolio Performance</a>

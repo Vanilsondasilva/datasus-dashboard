@@ -13,7 +13,7 @@ const chartData = {
 export function renderDashboard(container) {
     container.insertAdjacentHTML('beforeend', `
         <section class="dashboard-section">
-            <h3>Overall Business Health</h3>
+            <h3>Anvisa - Medicamentos</h3>
             <p class="subtitle">This is where we monitor the health of our business, along with our progress against <em>key metrics</em></p>
             
             <div class="dashboard-content">
@@ -35,44 +35,8 @@ export function renderDashboard(container) {
                         <canvas id="revenueChart"></canvas>
                     </div>
                 </div>
-                
-                <div class="kpi-section">
-                    <div class="revenue-card">
-                        <h4>Revenue per quarter</h4>
-                        <div class="main-metric">$132,631.24</div>
-                        <div class="quarter-label">Q3 2024</div>
-                        
-                        <div class="comparison-metrics">
-                            <div class="metric-row positive">
-                                <span class="arrow">↑</span>
-                                <span class="percentage">7.06%</span>
-                                <span class="comparison">vs. previous quarter: $123.9k</span>
-                            </div>
-                            <div class="metric-row positive">
-                                <span class="arrow">↑</span>
-                                <span class="percentage">133.97%</span>
-                                <span class="comparison">vs. Q3 2023: $56,686.65</span>
-                            </div>
-                        </div>
-                        
-                        <div class="goal-section">
-                            <div class="goal-header">
-                                <span>Revenue goal for this quarter</span>
-                                <span class="goal-amount">$142,403</span>
-                                <span class="goal-arrow">▼</span>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 93.1%;"></div>
-                                </div>
-                                <div class="progress-labels">
-                                    <span>0</span>
-                                    <span>Goal $250,000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </divclass="kpi-section">
+                    <div id="metric-cards-area"></div>
                 </div>
             </div>
         </section>
