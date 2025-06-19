@@ -26,13 +26,11 @@
 }
 
 /* Layout Principal */
-.main-section {
+.dashboard-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 24px;
-    margin-bottom: 32px;
-    width: 100%;
-    max-width: 100%;
+    gap: 2rem;
+    align-items: start;
 }
 
 /* Seção do Gráfico */
@@ -40,7 +38,6 @@
     background: #fafafa;
     border-radius: 8px;
     padding: 1.5rem;
-    min-width: 0;
 }
 
 .chart-header {
@@ -85,52 +82,21 @@
 }
 
 .chart-container {
-    background: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e2e8f0;
-    min-height: 300px;
-    height: auto;
+    height: 300px;
     position: relative;
-    overflow: hidden;
-}
-
-canvas {
-    width: 100% !important;
-    height: auto !important;
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
 }
 
 /* Seção de KPIs */
 .kpi-section {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    min-width: 0;
 }
 
-/* KPI CARDS COM GRID 2x2 E ALTURA IGUAL */
-#metric-cards-area {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 16px;
-    height: 100%;
-    align-items: stretch; /* CORREÇÃO: Força alinhamento vertical dos cards */
-}
-
-/* CARDS COM ALTURA IGUAL E FLEX INTERNO */
 .revenue-card {
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     padding: 1.5rem;
-    height: 100%;          /* CORREÇÃO: Ocupa toda a célula do grid */
-    display: flex;         /* CORREÇÃO: Flex interno para conteúdo */
-    flex-direction: column;
 }
 
 .revenue-card h4 {
@@ -156,6 +122,7 @@ canvas {
     margin-bottom: 1.5rem;
 }
 
+/* Métricas de Comparação */
 .comparison-metrics {
     margin-bottom: 1.5rem;
 }
@@ -235,10 +202,15 @@ canvas {
 
 /* Responsividade */
 @media (max-width: 1024px) {
-    .main-section {
+    .dashboard-content {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 1.5rem;
     }
+    
+    .dashboard-section {
+        padding: 1.5rem;
+    }
+    
     .main-metric {
         font-size: 2rem;
     }
@@ -248,17 +220,21 @@ canvas {
     .dashboard-section {
         padding: 1rem;
     }
+    
     .chart-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
+    
     .main-metric {
         font-size: 1.75rem;
     }
+    
     .legend {
         flex-wrap: wrap;
     }
+    
     .goal-header {
         flex-direction: column;
         align-items: flex-start;
@@ -271,18 +247,61 @@ canvas {
         padding: 0.75rem;
         margin: 0.5rem 0;
     }
+    
     .chart-section {
         padding: 1rem;
     }
+    
     .revenue-card {
         padding: 1rem;
     }
+    
     .main-metric {
         font-size: 1.5rem;
     }
+    
     .metric-row {
         flex-wrap: wrap;
         gap: 0.25rem;
+    }
+}
+
+.main-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.metrics-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Ajustar os cards para ficarem em coluna */
+.metrics-sidebar .metric-cards-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-section {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .metrics-sidebar .metric-cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
 
@@ -290,14 +309,8 @@ canvas {
     .main-section {
         gap: 12px;
     }
+    
     .chart-container {
         padding: 16px;
-    }
-    #metric-cards-area {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto;
-    }
-    .revenue-card {
-        padding: 1rem;
     }
 }

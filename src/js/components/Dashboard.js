@@ -1,6 +1,6 @@
 // Dados fictícios para o gráfico
 const chartData = {
-    labels: ['Jan 2023', 'Feb 2023', 'Mar 2023', 'Apr 2023', 'May 2023', 'Jun 2023', 
+    labels: ['Jan 2023', 'Feb 2023', 'Mar 2023', 'Apr 2023', 'May 2023', 'Jun 2023',
              'Jul 2023', 'Aug 2023', 'Sep 2023', 'Oct 2023', 'Nov 2023', 'Dec 2023',
              'Jan 2024', 'Feb 2024', 'Mar 2024', 'Apr 2024', 'May 2024', 'Jun 2024',
              'Jul 2024', 'Aug 2024', 'Sep 2024', 'Oct 2024'],
@@ -13,10 +13,9 @@ const chartData = {
 export function renderDashboard(container) {
     container.insertAdjacentHTML('beforeend', `
         <section class="dashboard-section">
-            <h3>Overall Business Health</h3>
+            <h3>Anvisa - Medicamentos</h3>
             <p class="subtitle">This is where we monitor the health of our business, along with our progress against <em>key metrics</em></p>
-            
-            <div class="dashboard-content">
+            <div class="main-section">
                 <div class="chart-section">
                     <div class="chart-header">
                         <h4>Revenue and orders over time</h4>
@@ -35,68 +34,39 @@ export function renderDashboard(container) {
                         <canvas id="revenueChart"></canvas>
                     </div>
                 </div>
-                
-                <div class="kpi-section">
-                    <div class="revenue-card">
-                        <h4>Revenue per quarter</h4>
-                        <div class="main-metric">$132,631.24</div>
-                        <div class="quarter-label">Q3 2024</div>
-                        
-                        <div class="comparison-metrics">
-                            <div class="metric-row positive">
-                                <span class="arrow">↑</span>
-                                <span class="percentage">7.06%</span>
-                                <span class="comparison">vs. previous quarter: $123.9k</span>
-                            </div>
-                            <div class="metric-row positive">
-                                <span class="arrow">↑</span>
-                                <span class="percentage">133.97%</span>
-                                <span class="comparison">vs. Q3 2023: $56,686.65</span>
-                            </div>
-                        </div>
-                        
-                        <div class="goal-section">
-                            <div class="goal-header">
-                                <span>Revenue goal for this quarter</span>
-                                <span class="goal-amount">$142,403</span>
-                                <span class="goal-arrow">▼</span>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 93.1%;"></div>
-                                </div>
-                                <div class="progress-labels">
-                                    <span>0</span>
-                                    <span>Goal $250,000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="metrics-sidebar">
+                    <div class="metric-cards-container" id="metric-cards-area"></div>
                 </div>
             </div>
         </section>
     `);
-    
-    // Inicializar o gráfico após inserir o HTML
-    setTimeout(() => {
-        initializeChart();
-    }, 100);
+
+    // Inicializar o gráfico após garantir que o DOM esteja pronto
+    const initialize = () => {
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js não foi carregado. Verifique se o script está incluído no HTML.');
+            return;
+        }
+        const ctx = document.getElementById('revenueChart');
+        if (!ctx) {
+            console.error('Canvas revenueChart não encontrado');
+            return;
+        }
+        initializeChart(ctx);
+    };
+    requestAnimationFrame(initialize);
+
+    // Renderizar os cards
+    renderMetricCards(document.getElementById('metric-cards-area'));
 }
 
-function initializeChart() {
-    // Verificar se Chart.js foi carregado
-    if (typeof Chart === 'undefined') {
-        console.error('Chart.js não foi carregado. Verifique se o script está incluído no HTML.');
+function initializeChart(ctx) {
+    // Validação básica dos dados
+    if (!chartData.labels.length || !chartData.revenue.length || !chartData.orders.length) {
+        console.error('Dados do gráfico inválidos');
         return;
     }
-    
-    const ctx = document.getElementById('revenueChart');
-    if (!ctx) {
-        console.error('Canvas revenueChart não encontrado');
-        return;
-    }
-    
+
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -132,14 +102,9 @@ function initializeChart() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
+            interaction: { mode: 'index', intersect: false },
             plugins: {
-                legend: {
-                    display: false
-                },
+                legend: { display: false },
                 tooltip: {
                     backgroundColor: 'rgba(0, 0, 0, 0.8)',
                     titleColor: '#ffffff',
@@ -159,60 +124,113 @@ function initializeChart() {
                 }
             },
             scales: {
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        maxRotation: 45,
-                        color: '#666',
-                        font: {
-                            size: 11
-                        }
-                    }
-                },
+                x: { grid: { display: false }, ticks: { maxRotation: 45, color: '#666', font: { size: 11 } } },
                 y: {
                     type: 'linear',
                     display: true,
                     position: 'left',
-                    title: {
-                        display: true,
-                        text: 'Revenue ($k)',
-                        color: '#10b981',
-                        font: {
-                            weight: 'bold'
-                        }
-                    },
-                    ticks: {
-                        color: '#666',
-                        callback: function(value) {
-                            return '$' + value + 'k';
-                        }
-                    },
-                    grid: {
-                        color: '#f3f4f6'
-                    }
+                    title: { display: true, text: 'Revenue ($k)', color: '#10b981', font: { weight: 'bold' } },
+                    ticks: { color: '#666', callback: value => '$' + value + 'k' },
+                    grid: { color: '#f3f4f6' }
                 },
                 y1: {
                     type: 'linear',
                     display: true,
                     position: 'right',
-                    title: {
-                        display: true,
-                        text: 'Orders',
-                        color: '#6366f1',
-                        font: {
-                            weight: 'bold'
-                        }
-                    },
-                    ticks: {
-                        color: '#666'
-                    },
-                    grid: {
-                        drawOnChartArea: false,
-                    },
+                    title: { display: true, text: 'Orders', color: '#6366f1', font: { weight: 'bold' } },
+                    ticks: { color: '#666' },
+                    grid: { drawOnChartArea: false }
                 }
             }
         }
     });
+}
+
+function renderMetricCards(container) {
+    container.innerHTML = `
+        <div class="revenue-card">
+            <div class="metric-header">
+                <h4 class="metric-title">Revenue Per Quarter</h4>
+            </div>
+            <div class="metric-value">$132,631.24</div>
+            <div class="metric-period">Q3 2024</div>
+            <div class="metric-comparisons">
+                <div class="comparison-item">
+                    <span class="comparison-label">vs. previous quarter</span>
+                    <span class="comparison-value">
+                        <span class="comparison-change positive">↑ 7.06%</span>
+                        <span class="comparison-baseline">$123.9k</span>
+                    </span>
+                </div>
+                <div class="comparison-item">
+                    <span class="comparison-label">vs. Q3 2023</span>
+                    <span class="comparison-value">
+                        <span class="comparison-change positive">↑ 133.97%</span>
+                        <span class="comparison-baseline">$56,686.65</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="revenue-card">
+            <div class="metric-header">
+                <h4 class="metric-title">Orders This Month</h4>
+            </div>
+            <div class="metric-value">2,847</div>
+            <div class="metric-period">Oct 2024</div>
+            <div class="metric-comparisons">
+                <div class="comparison-item">
+                    <span class="comparison-label">vs. last month</span>
+                    <span class="comparison-value">
+                        <span class="comparison-change positive">↑ 5.8%</span>
+                        <span class="comparison-baseline">2,691</span>
+                    </span>
+                </div>
+                <div class="comparison-item">
+                    <span class="comparison-label">vs. Oct 2023</span>
+                    <span class="comparison-value">
+                        <span class="comparison-change positive">↑ 95.5%</span>
+                        <span class="comparison-baseline">1,456</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="revenue-card">
+            <div class="metric-header">
+                <h4 class="metric-title">Average Order Value</h4>
+            </div>
+            <div class="metric-value">$17.54</div>
+            <div class="metric-period">Last 30 days</div>
+            <div class="metric-comparisons">
+                <div class="comparison-item">
+                    <span class="comparison-label">vs. previous month</span>
+                    <span class="comparison-value">
+                        <span class="comparison-change positive">↑ 3.8%</span>
+                        <span class="comparison-baseline">$16.89</span>
+                    </span>
+                </div>
+                <div class="comparison-item">
+                    <span class="comparison-label">vs. last year</span>
+                    <span class="comparison-value">
+                        <span class="comparison-change positive">↑ 15.2%</span>
+                        <span class="comparison-baseline">$15.23</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="revenue-card">
+            <div class="metric-header">
+                <h4 class="metric-title">Revenue Goal For This Quarter</h4>
+            </div>
+            <div class="metric-value">$142,403</div>
+            <div class="goal-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                <div class="progress-labels">
+                    <span>0</span>
+                    <span>Goal $250,000</span>
+                </div>
+            </div>
+        </div>
+    `;
 }

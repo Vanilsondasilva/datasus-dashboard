@@ -1,8 +1,12 @@
 .deeper-dive-section {
   background: #f7fafc;
   border-radius: 14px;
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   margin: 2rem 0;
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .deeper-dive-section h2 {
@@ -22,6 +26,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  padding: 0 1rem;
 }
 
 .deeper-dive-chart {
@@ -32,7 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 430px;
+  min-height: auto;
   transition: box-shadow .2s;
   border: 1px solid #f0f3fa;
 }
@@ -68,17 +73,21 @@ canvas {
     gap: 1.5rem;
   }
   .deeper-dive-chart {
-    min-height: 350px;
-    padding: 1.2rem 0.5rem;
+    padding: 1.2rem 0.8rem; /* Mantém espaçamento razoável */
+    min-height: 300px;
   }
 }
 
 @media (max-width:700px) {
   .deeper-dive-section {
-    padding: 1rem 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
   }
   .deeper-dive-chart {
     min-height: 250px;
-    padding: 0.8rem 0.2rem;
+    padding: 01rem 0.5rem;
+  }
+  .deeper-dive-charts {
+        padding: 0; /* Remove padding interno em telas muito pequenas */
   }
 }
